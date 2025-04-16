@@ -152,6 +152,12 @@ class BaseRecLabelDecode(object):
                 selection[1:] = text_index[batch_idx][1:] != text_index[batch_idx][:-1]
             for ignored_token in ignored_tokens:
                 selection &= text_index[batch_idx] != ignored_token
+            
+            # for text_id in text_index[batch_idx][selection]:
+            #     if text_id >= len(self.character):
+            #         print(f"Index {text_id} is out of range for dict with length {len(self.character)}")
+            #     else:
+            #         print(self.character[text_id])
 
             char_list = [
                 self.character[text_id] for text_id in text_index[batch_idx][selection]
