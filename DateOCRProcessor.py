@@ -97,7 +97,7 @@ class DateOCRProcessor:
 if __name__ == "__main__":
     # Example usage
     processor = DateOCRProcessor(
-        image_path="./samples/newsign2.png",
+        image_path="./samples/sign1.png",
         det_model_dir="./inference/det/en_PP-OCRv3_det_slim_infer/",
         cls_model_dir="./inference/cls/ch_ppocr_mobile_v2.0_cls_infer/",
         rec_model_dir="./inference/reg/en_PP-OCRv3_rec_infer/",
