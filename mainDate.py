@@ -5,7 +5,7 @@ import numpy as np
 import re
 
 # Hard-coded configuration
-image_path = "./samples/newsign.png"
+image_path = "./samples/newsign2.png"
 det_model_dir = "./inference/det/en_PP-OCRv3_det_slim_infer/"
 cls_model_dir = "./inference/cls/ch_ppocr_mobile_v2.0_cls_infer/"
 rec_model_dir = "./inference/reg/en_PP-OCRv3_rec_infer/"
@@ -79,19 +79,22 @@ def correcte(text):
 def findDate(res):
     for line in res[0]:
         text = line[1][0]
+        confident = line[1][1]
+
         match = date_pattern.search(text)
         if match:
             return match.group()
         
         corrected = correcte(text)
-        
+        print("Corrected text: ", corrected)
         match = date_pattern.search(corrected)
         if match:
             return match.group()
-        print(corrected)
-    return "Aucune date trouvé ou non reconnue"
+        
+    return "Aucune date trouvé ou date non reconnue"
 
 if __name__ == "__main__":
-    print("Resultat")
-    print(findDate(result))
+    print("------ OCR Result ------")
+    print("Resultat : " + findDate(result))
+    print("------------------------")
 
