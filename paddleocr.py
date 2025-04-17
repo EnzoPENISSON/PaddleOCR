@@ -69,6 +69,7 @@ from ppstructure.recovery.recovery_to_doc import sorted_layout_boxes, convert_in
 from ppstructure.recovery.recovery_to_markdown import convert_info_markdown
 
 logger = get_logger()
+logger.setLevel(logging.ERROR)
 
 __all__ = [
     "PaddleOCR",
