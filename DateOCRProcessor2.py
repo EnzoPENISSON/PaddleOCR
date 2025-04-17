@@ -242,5 +242,5 @@ class DateOCRProcessor2:
 
 
 if __name__ == "__main__":
-    print(DateOCRProcessor2().run("./samples/exemple/sign5.png"))
+    print(DateOCRProcessor2().run("./samples/exemple/sign9.png"))
 

@@ -15,6 +15,10 @@ TEST_CASES = [
     {"img_path": "./samples/exemple/sign3.png","expected": "Aucune date trouvée ou date non reconnue"},
     {"img_path": "./samples/exemple/sign4.png","expected": "17/05/2024"},
     {"img_path": "./samples/exemple/sign5.png","expected": "17/05/2024"},
+    {"img_path": "./samples/exemple/sign6.png","expected": "18/04/2024"},
+    {"img_path": "./samples/exemple/sign7.png","expected": "18/04/2024"},
+    {"img_path": "./samples/exemple/sign8.png","expected": "08/04/2024"},
+    {"img_path": "./samples/exemple/sign9.png","expected": "08/04/2024"},
 ]
 
 def objective(trial):
@@ -39,7 +43,13 @@ def objective(trial):
 
 if __name__ == "__main__":
     storage = "sqlite:///ocr_tuning.db"
-    study = optuna.create_study(direction="maximize", study_name="ocr_date_tuning", storage=storage, load_if_exists=True)
+    study = optuna.create_study(
+        direction="maximize",
+        sampler=optuna.samplers.TPESampler(seed=0),
+        study_name="ocr_tuning_v2",
+        storage="sqlite:///ocr_tuning.db",
+        load_if_exists=False
+    )
     study.optimize(objective, n_trials=100)
     print("Best params:", study.best_params)
     print("Best score:", study.best_value)
